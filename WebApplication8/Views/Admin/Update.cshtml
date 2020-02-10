@@ -1,0 +1,18 @@
+﻿@using Agency.Models;
+@using WebApplication8.ViewModel;
+@{
+    //List<PersonDetail> list = (List<PersonDetail>)ViewData["personList"];
+    PersonForm person = (PersonForm)TempData["person"];
+    Layout = "~/Views/Shared/_Layout _Admin.cshtml";
+
+    PersonDetail obj = (PersonDetail)ViewData["PersonKey"];
+}
+
+    <form action="/Admin/Save">
+        <input name="Id" value="@obj.Id" style="display: none" /> <br />
+        First name <input name="first" value="@obj.FirstName" /> <br />
+        Last name <input name="last" value="@obj.LastName" /> <br /><br />
+
+        <a href="/Admin/SaveToMap" class="btn btn-secondary">Change address</a>
+        <input type="submit" class="btn btn-primary" />
+    </form>

@@ -1,0 +1,82 @@
+﻿@using Agency.ViewModels;
+
+@model List<RoomViewModel>
+
+@{
+    Layout = null;
+}
+
+@if (Model.Any())
+{
+    <table class="table my-5" id="roomPreview">
+        <thead>
+            <tr>
+                <th scope="col">Width</th>
+                <th scope="col">Width</th>
+                <th scope="col">Heigth</th>
+                <th scope="col">Option</th>
+                <th scope="col">Details</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var room in Model)
+            {
+                <tr>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td>@room.Quadrature</td>
+                    <td>
+                        <button class="btn btn-danger" type="button" onclick="deleteRoom(@room.Id, this)">
+                            <i class="fas fa-trash-alt"></i>
+                            Delete
+                        </button>
+                    </td>
+                    <td><button class="btn btn-info" type="button" onclick="viewRoom(@room.Id)" data-toggle="modal" data-target="#addRoomModal"><i class="fas fa-search"></i> View</button></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+<div class="col-12 mb-3">
+    <button type="button" class="btn btn-primary" onclick="addNewRoom()" data-toggle="modal" data-target="#addRoomModal">
+        <div class="my-auto">
+            <i class="fas fa-plus"></i>
+            <span>Add New Room</span>
+        </div>
+    </button>
+</div>
+
+<div class="modal fade hide" id="addRoomModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-body"></div>
+            @*<div class="modal-footer">
+                <button class="btn btn-primary" id="updateRoomBtn" type="button">Save</button>
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+            </div>*@
+        </div>
+    </div>
+</div>
+
+<script>
+    function viewRoom(id) {
+        $.get('/Room/Index', { id: id }, function (data) {
+            console.log(data);
+            $('#addRoomModal .modal-body').html(data);
+        });
+    }
+
+    function deleteRoom(id, element) {
+        $.ajax({
+            url: '/Room/Delete',
+            type: 'DELETE',
+            data: $.param({ id: id }),
+            success: function (result) {
+                $(element).closest('tr').remove();
+                alert(result);
+            }
+        });
+    }
+</script>

@@ -1,0 +1,6 @@
+
+dotnet watch run
+
+browser-sync start `
+            --proxy http://localhost:49939/ `
+            --files '**/*.cshtml, **/*.css, **/*.js, **/*.htm*'

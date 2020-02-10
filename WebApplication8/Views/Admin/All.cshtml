@@ -1,0 +1,34 @@
+﻿@using WebApplication8.ViewModel;
+@using WebApplication8.Models;
+@using Agency.Models;
+@using Agency.ViewModel;
+@{
+    AdresForm a = (AdresForm)ViewData["p"];
+    Layout = "~/Views/Shared/_Layout _Admin.cshtml";
+
+    PersonForm person = (PersonForm)ViewData["person"];
+  
+}
+@*inject PersonForm person*@
+<h1>All</h1>
+                                                                 <div style="width:50%;">
+<form style="width:60%;" action="/Admin/SaveAll">
+    <input name="Id" value="@person.Id" style="display: none" /> <br />
+                                                                     <div style="float:left" >
+                                                                         <label>Coutry</label><br />
+                                                                         <label>City</label><br />
+                                                                         <label>Address</label><br />
+                                                                         <label>First name</label><br />
+                                                                         <label>Last Name</label><br />
+                                                                     </div>
+                                                                     <div style="float:right">
+                                                                         <input name="country" disabled value="@a.NameCountry" /> <br />
+                                                                         <input name="city"disabled  value="@a.NameCity" /> <br />
+                                                                         <input name="address" disabled value="@a.NameAddress" /> <br />
+                                                                         <input name="first"disabled  value="@person.FirstName" /> <br />
+                                                                         <input name="last" disabled value="@person.LastName" /> <br />
+    </div>
+    <input type="submit" class="btn btn-primary" />
+    <a href="/Admin/Dismiss" class="btn btn-warning">Dismiss</a>
+</form>
+                                                                 </div>

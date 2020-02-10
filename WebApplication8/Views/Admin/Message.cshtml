@@ -1,0 +1,9 @@
+﻿
+@{
+    // ViewData["Title"] = "Message";
+    var poruka = (string)TempData["keyPoruka"];
+}
+
+<h1>Message</h1>
+<label>Sucessfully removed @poruka</label><br />
+<a href="/Admin/Index" class="btn btn-info">Done</a>

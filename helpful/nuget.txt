@@ -1,0 +1,5 @@
+https://github.com/AutoMapper/AutoMapper.Collection/blob/master/README.md
+
+PM> Install-Package AutoMapper.Collection
+PM> Install-Package AutoMapper.Collection.EntityFramework
+PM> Install-Package AutoMapper.Collection.LinqToSQL

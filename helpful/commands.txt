@@ -1,0 +1,4 @@
+// Migrate from database
+Scaffold-DbContext "Server=.;Database=Agency;Trusted_Connection=True;MultipleActiveResultSets=true" Microsoft.EntityFrameworkCore.SqlServer -o Models
+
+// 

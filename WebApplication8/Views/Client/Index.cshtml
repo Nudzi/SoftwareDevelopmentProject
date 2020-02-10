@@ -1,0 +1,34 @@
+﻿@using Agency.Models;
+@using Agency.ViewModel;
+@{
+    Client client = (Client)ViewData["client"];
+    PersonDetail person = (PersonDetail)ViewData["person"];
+    AdresForm a = (AdresForm)ViewData["a"];
+    Layout = "~/Views/Shared/_Layout _Client.cshtml";
+}
+
+<h1>Profile</h1>
+@*<div class="border = 50%">
+  <input type="file" name="image" value="@client" />
+</div>*@
+<div>
+    <br />
+    <label >Personal</label>&nbsp;&nbsp;&nbsp; <a href="/Client/Update?Id=@client.Id" class="btn btn-secondary btn-sm" style="margin-left:180px">Edit</a><br /><br />  
+    <div class="border = 1px" style="width:300px; padding:15px; text-align:center;">
+        <label name="first">First name: @person.FirstName</label><br />
+        <label name="last">Last name: @person.LastName</label><br />
+    </div>
+    <br />
+    <label>Resident</label> &nbsp;&nbsp;&nbsp;<a href="/Client/Map" class="btn btn-secondary btn-sm" style="margin-left:180px">Edit</a><br /><br />
+    <div class="border = 1px" style="width:300px; padding:15px; text-align:center ">
+        <div>
+          @*  <label name="state">Sate: @a.NameCountry</label><br />*@
+            @*<label name="city">City: @a.NameCity</label>*@<br />
+            <label name="address">Address: @a.NameAddress</label><br />
+        </div>
+    </div>
+</div>
+<br />
+<a href="#" class="btn btn-secondary btn-sm">Flats</a>
+
+

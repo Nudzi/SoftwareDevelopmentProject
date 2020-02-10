@@ -1,0 +1,97 @@
+﻿@using Agency.ViewModels
+
+@model RoomViewModel
+@{
+    Layout = null;
+}
+
+
+<div id="roomIndex">
+    @if (Model != null)
+    {
+        @if (Model.Pictures != null)
+        {
+            <div><label>Current pictures:</label></div>
+            <div class="row">
+
+                @foreach (var picture in Model.Pictures)
+                {
+                    <div class="col-md-2 col-sm-3 col-6 pb-2 my-auto">
+                        <img class="img-fluid" onclick="deletePicture(@picture.Id, this)" src="@Url.Content(picture.Url)" />
+                    </div>
+                }
+            </div>
+        }
+    }
+
+    <div><label>New pictures:</label></div>
+    <div class="row" id="images"></div>
+
+    <form method="post" id="roomForm" class="user row" asp-action="Index" asp-controller="Room" asp-route-flatId="@Model.FlatId" asp-route-Id="@Model.Id" enctype="multipart/form-data">
+        <div class="col-12">
+            <div>
+                <div class="form-picture-input d-flex justify-content-center align-items-center">
+                    <input asp-for="Files" multiple id="file" type="file" class="input" accept="image/x-png,image/gif,image/jpeg">
+                    <p class="text-center">Drag your files here or click in this area.</p>
+                </div>
+            </div>
+        </div>
+        <hr />
+        <div class="col-12 pt-3">
+            <div class="d-flex justify-content-right align-items-center">
+                <button class="btn btn-primary mr-2" id="updateRoomBtn" type="submit">Save</button>
+                <button class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<script src="~/other/js/picture.js"></script>
+
+
+
+<script>
+    $(document).ready(function () {
+        $('#updateRoomBtn').prop('disabled', true);
+
+        $('#roomForm').change(function () {
+            $('#updateRoomBtn').prop('disabled', false);
+        });
+
+        function deletePicture(id, element) {
+            $.ajax({
+                url: '/Picture/Delete',
+                type: 'DELETE',
+                data: $.param({ id: id }),
+                success: function (result) {
+                    $(element).closest('div').remove();
+                    alert(result);
+                }
+            });
+        }
+
+        $('#roomForm').submit('click', function (e) {
+            e.preventDefault();
+            var formData = new FormData(this);
+
+            $.ajax({
+                type: 'POST',
+                url: $(this).attr('action'),
+                data: formData,
+                cache: false,
+                contentType: false,
+                processData: false,
+                success: function (data) {
+                    $("#roomIndex").html(data)
+
+                },
+                error: function (data) {
+                    alert(data);
+                }
+            });
+        });
+    });
+
+
+
+</script>

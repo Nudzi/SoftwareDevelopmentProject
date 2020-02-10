@@ -1,0 +1,17 @@
+﻿@using Agency.Models;
+@using WebApplication8.ViewModel;
+@{
+    //List<PersonDetail> list = (List<PersonDetail>)ViewData["personList"];
+    PersonForm person = (PersonForm)TempData["person"];
+
+    PersonDetail obj = (PersonDetail)ViewData["PersonKey"];
+}
+
+    <form action="/PersonDetail/Save">
+        <input name="Id" value="@obj.Id" style="display: none" /> <br />
+        First name <input name="first" value="@obj.FirstName" /> <br />
+        Last name <input name="last" value="@obj.LastName" /> <br /><br />
+
+        <a href="/PersonDetail/Save" class="btn btn-secondary">Change address</a>
+        <input type="submit" class="btn btn-primary" />
+    </form>

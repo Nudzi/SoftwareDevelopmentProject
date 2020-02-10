@@ -1,0 +1,21 @@
+﻿@using WebApplication8.ViewModel;
+@using WebApplication8.Models;
+@using Agency.Models;
+@using Agency.ViewModel;
+@{
+    AdresForm a = (AdresForm)ViewData["p"];
+    PersonForm person = (PersonForm)ViewData["person"];
+  
+}
+@*inject PersonForm person*@
+<h1>All</h1>
+<form action="/PersonDetail/SaveAll">
+    <input name="Id" value="@a.Id" style="display: none" /> <br />
+    First name <input name="country" value="@a.NameCountry" /> <br />
+    First name <input name="city" value="@a.NameCity" /> <br />
+    First name <input name="address" value="@a.NameAddress" /> <br />
+    First name <input name="first" value="@person.FirstName" /> <br />
+
+    <input type="submit" class="btn btn-primary" />
+    <a href="/PersonDetail/Dismiss" class="btn btn-warning">Dismiss</a>
+</form>

@@ -1,0 +1,17 @@
+﻿@using Agency.Models;
+
+@{
+    Client client = (Client)ViewData["client"];
+    PersonDetail person = (PersonDetail)ViewData["person"];
+
+    // ViewData["Title"] = "Update";
+}
+
+<h1>Edit name</h1>
+<form action="/Client/Save">
+    <input name="id" value="@client.Id" style="display:none" /><br />
+        First name <input name="first" value="@person.FirstName" /><br />
+        Last name <input name="last" value="@person.LastName" /><br /><br />
+    <a href="/Client/Index" class="btn btn-secondary">Dismiss</a>
+    <input type="submit" class="btn btn-primary" />
+</form>

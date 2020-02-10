@@ -1,0 +1,39 @@
+﻿@using Agency.Models;
+@{
+    List<PersonDetail> list = (List<PersonDetail>)ViewData["personList"];
+   // var a=0;
+}
+
+
+<h1>Employees</h1>
+@foreach (var x in list)
+{
+    <table class="table thead-dark">
+        <tr>
+            <td>
+                <input name="id" value="@x.Id" style="display:none" />
+            </td>
+            <td><label name="first">First name</label></td>
+            <td><input type="text" disabled name="firstn" value="@x.FirstName" /></td>
+            <td><label name="last">Last name</label></td>
+            <td><input type="text" disabled name="lastn" value="@x.LastName" /></td>
+            <td><label name="ver">Verified</label></td>
+            <td><input type="text" disabled name="vern" value="(@x.Verified)" /></td>
+
+            @*@foreach (var z in city)
+                {
+                    <select>
+                        <option value="@z.Id">@z.Name</option>
+                    </select>
+                }*@
+            <td> <a href="/PersonDetail/Update?Id=@x.Id" class="btn btn-dark">Update</a></td>
+            <td> <a href="/PersonDetail/Delete?Id=@x.Id" class="btn btn-danger">Delete</a></td>
+        </tr>
+
+    </table>
+
+    <br>
+}
+
+
+

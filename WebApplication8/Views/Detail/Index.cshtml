@@ -1,0 +1,15 @@
+﻿@using Agency.Models;
+
+@{
+    // ViewData["Title"] = "Update";
+    Layout = "~/Views/Shared/_Layout _Detail.cshtml";
+
+}
+
+<h1>Edit personal info</h1>
+<form action="/Detail/Save">
+    First name <input type="text" name="first" placeholder="Enter your first name" /><br /><br />
+    Last name <input type="text" name="last" placeholder="Enter your last name" /><br /><br /><br />
+    Last name <input type="date" name="date" placeholder="Enter your birth date" /><br /><br />
+    <input type="submit" class="btn btn-primary" />
+</form>

@@ -1,0 +1,55 @@
+﻿@using Agency.Models;
+@{
+    // ViewData["Title"] = "Map";
+    List<Country> country = (List<Country>)ViewData["countryList"];
+    List<City> grad = (List<City>)ViewData["grad"];
+    List<Address> adresa = (List<Address>)ViewData["adresa"];
+    Layout = "~/Views/Shared/_Layout _Detail.cshtml";
+
+}
+
+<h1>Map</h1>
+<select onchange="getP(value)">
+
+    <option value="" selected disabled hidden>Choose state</option>
+    @foreach (var y in country)
+    {
+        @*if(a == y.Id)
+            {
+              <option selected value="@y.Id"> @y.Name</option>
+
+            }*@
+
+        <option value="@y.Id"> @y.Name</option>
+
+    }
+</select>
+<select onchange="getA(value)">
+    <option value="" selected disabled hidden>Choose city</option>
+    @foreach (var y in grad)
+    {
+        <option value="@y.Id"> @y.Name</option>
+
+    }
+</select>
+
+<select onchange="getV(value)">
+    <option value="" selected disabled hidden>Choose address</option>
+    @foreach (var y in adresa)
+    {
+        <option value="@y.Id"> @y.Name</option>
+    }
+</select>&nbsp;
+<a href="/Detail/All" class="btn btn-dark">Submit</a>&nbsp;
+<script>
+    function getP(id) {
+        window.open("/Detail/Grad?Id=" + id, "_self");
+    }
+    function getA(id) {
+        window.open("/Detail/Adresa?Id=" + id, "_self");
+    }
+    function getV(id) {
+        window.open("/Detail/Value?Id=" + id, "_self");
+    }
+</script>
+

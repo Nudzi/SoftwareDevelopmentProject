@@ -1,0 +1,32 @@
+﻿.form-picture-input {
+  position: relative;
+  width: 100%;
+  min-height: 200px;
+  border: 4px dashed rgb(83, 83, 83);
+}
+
+.form-picture-input .input {
+  cursor: pointer;
+  position: absolute;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  outline: none;
+  opacity: 0;
+}
+
+.rounded-right-0 {
+  border-bottom-left-radius: 0;
+  border-top-left-radius: 0;
+}
+
+.rounded-left-0 {
+  border-bottom-right-radius: 0;
+  border-top-right-radius: 0;
+}
+/* 
+@media only screen and(max-width: 576px) {
+    .navbar-brand {
+        margin-left: 7px!important;
+    }
+} */

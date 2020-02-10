@@ -1,0 +1,39 @@
+﻿@using Agency.Models;
+@using Agency.ViewModel;
+@{
+    Flat flat = (Flat)ViewData["flat"];
+    AdresForm a = (AdresForm)ViewData["address"];
+    ViewData["Title"] = "Show";
+}
+<h1 style="color:red">Flat</h1>
+<div class="border = 1px" style="position:relative; text-align:left; width:40%;padding:15px">
+    <h2 style="text-align:center; text-transform:uppercase">@flat.Name</h2>
+    <br />
+    @if (flat.Description != null)
+    {
+        <p style="font-weight:bold">Description: </p>
+        <br />
+        <p>@flat.Description</p>
+    }
+    <br />
+    <p style="font-weight:bold">Amount: </p>
+    <p>@flat.Amount $</p>
+    <br />
+    <p style="font-weight:bold">Floor: </p>
+    <p>@flat.Floor</p>
+    <br />
+    <p style="font-weight:bold">Address: </p>
+    <div>
+        <label name="state">Sate: @a.NameCountry</label><br />
+        <label name="city">City: @a.NameCity</label><br />
+        <label name="address">Address: @a.NameAddress</label><br />
+    </div>
+</div>
+<div style="left:50%; width:40%; padding:15px; position:absolute;top:25%;display:inline-block" class="border = 1px">
+    <img style="width:200px;" src="~/images/04ee544d-d4ee-49c2-a268-98c1c18887e5_wallpaper.jpg" />
+    <img style="width:200px;" src="~/images/49f64a7d-36d1-4ebf-bdb4-6f92813127e4_wallpaper - Copy.jpg" />
+</div>
+<div style="width:100%; padding:20px; position:relative">
+    <a href="#" class="btn btn-secondary btn-lg">Rent</a>
+</div>
+

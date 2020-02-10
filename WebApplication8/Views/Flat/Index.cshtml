@@ -1,0 +1,110 @@
+﻿@model Agency.ViewModels.FlatForm
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.8.1/baguetteBox.min.css">
+<link href="~/other/css/gallery-grid.css" rel="stylesheet" />
+
+<form id="flatForm" method="post" class="user row mt-3" enctype="multipart/form-data">
+
+
+    @*Flat Details*@
+    <section class="col-md-6 mt-3">
+        <h6>Flat details:</h6>
+        <hr />
+        <div class="form-group">
+            <input placeholder="e.g. Big Flat With Beach View" asp-for="Name" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label>Amount in $ per day:</label>
+            @if (Model.Amount == 0)
+            {
+                <input type="number" placeholder="e.g. 10$" value="" asp-for="Amount" class="form-control" />
+            }
+            else
+            {
+                <input placeholder="e.g. 10$" asp-for="Amount" class="form-control" />
+            }
+        </div>
+        <div class="form-group">
+            <label>Description about the flat:</label>
+            <textarea placeholder="e.g. This Flat is near the Beach and has a excelent view to it. There are 5 rooms..." asp-for="Description" class="form-control"></textarea>
+        </div>
+    </section>
+    @*Address Details*@
+    @*Title*@
+    <section class="col-md-6 mt-3">
+        <div class="form-group">
+            <h6>Location:</h6>
+            <hr>
+            <select id="CountryId" asp-for="Address.CountryId" asp-items="Model.Address.Countries" class="form-control"></select>
+        </div>
+        <div class="form-group">
+            <select id="CityId" asp-for="Address.CityId" asp-items="Model.Address.Cities" class="form-control"></select>
+        </div>
+        <div class="form-group">
+            <h6>Address: </h6>
+            <hr>
+            <div class="d-flex justify-content-around">
+                <input placeholder="e.q. Smith Cottage" asp-for="Address.Name" class="form-control rounded-left-0" />
+                @if (Model.Address.Number == 0)
+                {
+                    <input type="number" placeholder="e.g. 7" asp-for="Address.Number" value="" class="flex-md-grow-1 form-control rounded-right-0" />
+                }
+                else
+                {
+                    <input placeholder="e.g. 7" asp-for="Address.Number" class="flex-md-grow-1 form-control rounded-right-0" />
+                }
+            </div>
+        </div>
+    </section>
+    <div id="rooms" class="w-100"></div>
+    <div class="col-12 pt-3">
+        <div class="d-flex justify-content-center align-items-center">
+            <button class="btn btn-primary btn-user" type="submit" id="flatFormBtn">Save</button>
+            <button class="btn btn-light btn-user">Cancel</button>
+        </div>
+    </div>
+
+</form>
+
+
+
+<script src="~/other/js/address.js"></script>
+<script src="~/other/js/picture.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $('#flatFormBtn').prop('disabled', true);
+
+        $('#flatForm').change(function () {
+            $('#flatFormBtn').prop('disabled', false);
+        });
+
+    });
+
+    function addNewRoom()
+    {
+        $.get('/Room/Index', {flatId: @Model.Id},function (data) {
+            $('#addRoomModal .modal-body').html(data);
+        });
+    }
+
+    $( document ).ready(function() {
+        function getRooms(flatId)
+        {
+            console.log("flatId:" + flatId);
+            if (flatId != 0) {
+                $.get('/Room/Preview', { flatId: flatId }, function (data) {
+                    $('#rooms').html(data);
+                });
+            }
+        }
+
+        //$('#addRoomModal').on('hidden.bs.modal', function () {
+        //    $.get('/Room/Preview', { flatId: flatId }, function (data) {
+        //        $('#rooms').html(data);
+        //    });
+        //});
+        getRooms(@Model.Id);
+    });
+
+</script>

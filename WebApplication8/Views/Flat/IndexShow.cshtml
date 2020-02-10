@@ -1,0 +1,26 @@
+﻿@using Agency.Models;
+@{
+    // ViewData["flat"] = "IndexShow";
+    List<Flat> flat = (List<Flat>)ViewData["flat"];
+    List<Picture> picture = (List<Picture>)ViewData["picture"];
+}
+
+<h1>Flat</h1>
+@foreach (var x in flat)
+{
+<div style="position:relative; display:inline-block; width:100%; padding:13px" class="border = 50%">
+    <a href="/Flat/Show?Id=@x.Id" style="cursor:pointer">
+    <label style="font-size:large; color:red; font-weight:bold; text-transform:uppercase">@x.Name</label><br />
+    </a>
+    <label style="font-size:medium; color:red; font-weight:bold">@x.Amount $</label>
+    <br />
+    @if (@x.Description != null)
+    {
+        <label>>@x.Description</label>
+    }
+    <img style="width:200px" src="~/images/01180cd2-690c-4693-a750-38542689c4ac_wallpaper - Copy.jpg" />
+</div>
+    <br /><br />
+    
+}
+
